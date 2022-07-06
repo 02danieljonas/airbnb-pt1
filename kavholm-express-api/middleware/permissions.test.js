@@ -5,7 +5,7 @@ const {
   commonAfterAll,
   testListingIds,
 } = require("../tests/common")
-const { BadRequestError, ForbiddenError } = require("..//utils/errors")
+const { BadRequestError, ForbiddenError } = require("../utils/errors")
 const permissions = require("./permissions")
 
 beforeAll(commonBeforeAll)
