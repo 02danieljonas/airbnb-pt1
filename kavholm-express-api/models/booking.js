@@ -197,6 +197,8 @@ class Booking {
     )
 
     return results.rows[0]
-  }}
+  }
+
+}
 
 module.exports = Booking

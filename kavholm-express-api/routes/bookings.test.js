@@ -87,5 +87,40 @@ describe("GET /bookings/listings", () => {
 })
 
 /************************************** POST bookings/listings/:listingId */
+describe("POST bookings/listings/:listingId", () => {
+
+  test("Authed user can book a listing they don't own", async () => {
+      const listingId = testListingIds[0];
+      const listing = await Listing.fetchListingById(listingId);
+
+      const data = {
+        newBooking: {
+            startDate: new Date("03-05-2021"),
+            endDate: new Date("03-07-2021"),
+            guests: 1,
+          },
+      };
+      const res = await request(app).post(`bookings/listings/:listingId/`).set("authorization", `Bearer ${testTokens.jloToken}`).send({
+        email: "lebron@james.io",
+        password: "password1",
+      })
+  });
+  test("Throws a Bad Request error when user attempts to book their own listing", async () => {
+      const listingId = testListingIds[0];
+
+      const data = {
+          newBooking: {
+              startDate: new Date("03-05-2021"),
+              endDate: new Date("03-07-2021"),
+              guests: 1,
+          },
+      };
+      const res = await request(app).post(`bookings/listings/:listingId/`).set("authorization", `Bearer ${testTokens.jloToken}`).send({
+        email: "lebron@james.io",
+        password: "password1",
+      })
+  });
+  
+});
 
 /************************************** GET bookings/listings/:listingId */

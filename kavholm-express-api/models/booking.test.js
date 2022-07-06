@@ -1,4 +1,5 @@
 const { BadRequestError } = require("../utils/errors");
+const request = require("supertest")
 const Listing = require("./listing");
 const Booking = require("./booking");
 const {
@@ -14,14 +15,9 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
+
+
 describe("Booking", () => {
-    describe("POST bookings/listings/:listingId", () => {
-      test("Authed user can book a listing they don't own", async () => {
-        const listingId = testListingIds[0];
-
-      })
-    });
-
     describe("Test createBooking", () => {
         test("Can create a new booking with valid params", async () => {
             const user = { username: "jlo" };
